@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/productFragment">
+
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="marcelmax.shoppingcart.view.ProductFragment"
+        android:label="navigation_product_list"
+        tools:layout="@layout/product_list">
+        <action
+            android:id="@+id/action_productFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <argument
+            android:name="pass_product"
+            app:argType="marcelmax.shoppingcart.model.Product" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="marcelmax.shoppingcart.view.ProductDetailFragment"
+        android:label="navigation_product_list_item_detail"
+        tools:layout="@layout/product_list_item_detail"
+        app:navigationIcon="?homeAsUpIndicator"/>
+
+</navigation>

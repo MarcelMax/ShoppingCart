@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ProductShopping</string>
+    <string name="api_key">b5f18e70</string>
+    <string name="tv_detail">details</string>
+    <string name="tv_price">%1$.2f %2$s</string>
+    <string name="tv_reviewCount">(%1$d)</string>
+    <string name="dialog_quantity_title">Qty: </string>
+    <string name="about_product">About the Product: </string>
+    <string name="add_to_cart">Add to Cart</string>
+</resources>
