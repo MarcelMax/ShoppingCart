@@ -8,7 +8,8 @@
     <fragment
         android:id="@+id/productFragment"
         android:name="marcelmax.shoppingcart.view.ProductFragment"
-        android:label="navigation_product_list"
+        android:label="@string/product_list"
+        app:defaultNavHost="true"
         tools:layout="@layout/product_list">
         <action
             android:id="@+id/action_productFragment_to_productDetailFragment"
@@ -23,8 +24,21 @@
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="marcelmax.shoppingcart.view.ProductDetailFragment"
-        android:label="navigation_product_list_item_detail"
+        android:label="@string/product_detail"
         tools:layout="@layout/product_list_item_detail"
         app:navigationIcon="?homeAsUpIndicator"/>
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="marcelmax.shoppingcart.view.CartFragment"
+        android:label="@string/product_cart"
+        tools:layout="@layout/cart_screen" >
+        <action
+            android:id="@+id/action_cartFragment_to_productDetailFragment"
+            app:destination="@+id/productDetailFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_productFragment"
+            app:destination="@id/productFragment" />
+    </fragment>
 
 </navigation>
