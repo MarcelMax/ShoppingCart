@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,7 +38,6 @@ public class ProductFragment extends Fragment {
     private ArrayList<Product> products;
     private ProductAdapter productAdapter;
     private ArrayList<ProductDBResponse> dbResponseArrayList = new ArrayList<>();
-    //Product testProduct = new Product(1,"oneName","oneDesc",6.5,"http://dummyimage.com/250x134.jpg/ff4444/ffffff","8/1/2018",true);
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.product_list, container, false);
@@ -100,15 +100,14 @@ public class ProductFragment extends Fragment {
             prepareRecyclerView();
         }
 
-
-
     }
 
     // sets up the recyclerview
     private void prepareRecyclerView() {
         productAdapter = new ProductAdapter(getContext(), products);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(productAdapter);
         productAdapter.notifyDataSetChanged();

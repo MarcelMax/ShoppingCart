@@ -84,8 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     numberpicker:focusable="false"
-                    numberpicker:min="1">
-                </com.travijuu.numberpicker.library.NumberPicker>
+                    numberpicker:min="1"></com.travijuu.numberpicker.library.NumberPicker>
 
             </RelativeLayout>
 

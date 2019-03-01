@@ -6,15 +6,16 @@
     android:orientation="vertical"
     >
 
+    <!--todo kann eventuell weg -->
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rv_cart"
+        android:id="@+id/rv_address"
         android:clipToPadding="false"
         android:overScrollMode="never"
-        android:scrollbars="vertical">
+        android:scrollbars="horizontal"
+        android:orientation="horizontal">
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

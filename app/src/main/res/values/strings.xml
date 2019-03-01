@@ -10,4 +10,16 @@
     <string name="product_list">Products</string>
     <string name="product_detail">Product Details</string>
     <string name="product_cart">Shopping Cart</string>
+
+    <string name="cart_title">Check Out</string>
+    <string name="cart_ordered_products">Your Products: </string>
+    <string name="cart_delivery_address">Delivery Address: </string>
+    <string name="cart_delivery_address_new">New Address</string>
+    <string name="cart_order">Order Now</string>
+    <string name="cart_no_address_available">No Address available</string>
+
+
+    <string name="cart_item_list_quantity">Quantity: %1$d</string>
+    <string name="cart_item_list_total">Total Amount: %1$.2f %2$s</string>
+    <string name="cart_item_list_delivery_date">Est. Delivery: </string>
 </resources>

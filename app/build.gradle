@@ -40,4 +40,6 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui:$nav_version"
     // use -ktx for Kotlin
     implementation 'com.github.travijuu:numberpicker:1.0.7'
+
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
 }
