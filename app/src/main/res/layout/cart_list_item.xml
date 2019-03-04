@@ -54,6 +54,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:textSize="18sp"
+                android:text="@string/cart_item_list_quantity"
                 tools:text="@string/cart_item_list_quantity" />
 
 
@@ -66,6 +67,7 @@
                 android:layout_marginTop="8dp"
                 android:textColor="@color/red1"
                 android:textSize="18sp"
+                android:text="@string/cart_item_list_total"
                 tools:text="@string/cart_item_list_total" />
 
             <TextView
@@ -82,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_above="@id/tv_date"
+                android:text="@string/cart_item_list_delivery_date"
                 tools:text="@string/cart_item_list_delivery_date" />
 
         </RelativeLayout>

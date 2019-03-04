@@ -74,7 +74,7 @@
                 android:layout_height="1dp"
                 android:layout_below="@+id/btn_new_address"
                 android:layout_marginTop="16dp"
-                android:background="@color/Black" />
+                android:background="@color/darkGrey" />
 
         </RelativeLayout>
 
@@ -95,16 +95,6 @@
             android:textSize="18sp"
             android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/tv_empty_view_products"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/cart_ordered_products"
-            android:layout_marginTop="8dp"
-            android:text="@string/cart_no_address_available"
-            android:visibility="gone"
-            tools:text="TEST" />
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_cart"
             android:layout_width="match_parent"
@@ -115,6 +105,15 @@
             android:overScrollMode="never"
             android:scrollbars="vertical" />
 
+        <TextView
+            android:id="@+id/tv_empty_view_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cart_ordered_products"
+            android:layout_marginTop="8dp"
+            android:text="@string/cart_no_products_in_cart"
+            android:visibility="gone"
+            tools:text="TEST" />
         <Button
             android:id="@+id/btn_order"
             android:layout_width="match_parent"

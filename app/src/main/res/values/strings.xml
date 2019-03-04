@@ -17,9 +17,10 @@
     <string name="cart_delivery_address_new">New Address</string>
     <string name="cart_order">Order Now</string>
     <string name="cart_no_address_available">No Address available</string>
+    <string name="cart_no_products_in_cart">No Products in your cart.</string>
 
 
     <string name="cart_item_list_quantity">Quantity: %1$d</string>
-    <string name="cart_item_list_total">Total Amount: %1$.2f %2$s</string>
+    <string name="cart_item_list_total">Total: %1$.2f %2$s</string>
     <string name="cart_item_list_delivery_date">Est. Delivery: </string>
 </resources>

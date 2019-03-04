@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import marcelmax.shoppingcart.R;
 import marcelmax.shoppingcart.adapter.ViewPagerAdapter;
@@ -43,6 +44,7 @@ public class ProductDetailFragment extends Fragment {
     ViewPager viewPager;
 
     private ArrayList<String> imagesList;
+    private Product product;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.product_list_item_detail, container, false);
@@ -65,7 +67,7 @@ public class ProductDetailFragment extends Fragment {
      * fetches the product and populate the view with content
      */
     private void fillWithContent() {
-        Product product;
+        // Product product;
         Bundle bundle = this.getArguments();
 
         imagesList = new ArrayList<>();
@@ -103,4 +105,16 @@ public class ProductDetailFragment extends Fragment {
         unbinder.unbind();
     }
     //todo handle add to cart button
+
+    @OnClick(R.id.btn_add_to_cart)
+    public void addToCart(){
+        Log.v("","ADDCARTPRODUCT " + product);
+        if (CartFragment.cartArrayList == null){
+            CartFragment.cartArrayList = new ArrayList<>();
+
+        }
+        product.setProductQuantity(numberPicker.getValue());
+        CartFragment.cartArrayList.add(product);
+
+    }
 }
