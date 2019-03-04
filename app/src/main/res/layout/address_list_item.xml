@@ -24,7 +24,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_address"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_background"
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="4dp"
                 android:layout_toRightOf="@+id/tv_address_firstname"
                 tools:text="Peters" />
 
@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/tv_address_streetname"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="4dp"
                 android:layout_below="@+id/tv_address_firstname"
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@+id/tv_address_streetname"
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_below="@+id/tv_address_streetname"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="4dp"
                 android:layout_toRightOf="@+id/tv_address_postcode"
                 tools:text="Osnabrück" />
 

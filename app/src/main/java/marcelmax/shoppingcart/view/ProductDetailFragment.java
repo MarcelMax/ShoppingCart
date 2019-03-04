@@ -98,6 +98,9 @@ public class ProductDetailFragment extends Fragment {
         Log.v("", "" + imagesList);
     }
 
-
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
     //todo handle add to cart button
 }

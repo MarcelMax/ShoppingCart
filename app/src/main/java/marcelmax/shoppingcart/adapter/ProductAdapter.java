@@ -82,7 +82,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             ButterKnife.bind(this,itemView);
         }
 
-        //todo handle navigation
+
         @OnClick(R.id.cv_cardview)
         public void changeFragment(){
 

@@ -3,6 +3,7 @@ package marcelmax.shoppingcart.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import marcelmax.shoppingcart.R;
 import marcelmax.shoppingcart.model.Address;
 
@@ -75,4 +77,5 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
             ButterKnife.bind(this,itemView);
         }
     }
+
 }

@@ -113,4 +113,9 @@ public class ProductFragment extends Fragment {
         productAdapter.notifyDataSetChanged();
 
     }
+
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }
