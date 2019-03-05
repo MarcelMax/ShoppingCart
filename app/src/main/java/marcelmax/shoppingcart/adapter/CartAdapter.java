@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import marcelmax.shoppingcart.R;
 import marcelmax.shoppingcart.model.Product;
 
@@ -41,9 +42,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public void onBindViewHolder(@NonNull CartViewHolder cartViewHolder, int i) {
         Product product = cartArrayList.get(i);
         cartViewHolder.cartProductName.setText(product.getProductName());
-        cartViewHolder.cartQuantity.setText(mContext.getResources().getString(R.string.cart_item_list_quantity,product.getProductQuantity()));
+        cartViewHolder.cartQuantity.setText(mContext.getResources().getString(R.string.cart_item_list_quantity,product.getProductQuantityChoosen()));
        // double totalamount = product.getProductPrice()*product.getProductQuantity();
-        cartViewHolder.cartTotalAmount.setText(mContext.getResources().getString(R.string.cart_item_list_total,(product.getProductPrice()*product.getProductQuantity()),product.getProductCurrency()));
+        cartViewHolder.cartTotalAmount.setText(mContext.getResources().getString(R.string.cart_item_list_total,(product.getProductPrice()*product.getProductQuantityChoosen()),product.getProductCurrency()));
         cartViewHolder.cartDate.setText(product.getProductDate());
         Picasso.get()
                 .load(product.getProductImg())
@@ -72,5 +73,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
+
+        
+
     }
 }

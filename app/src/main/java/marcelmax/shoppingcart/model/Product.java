@@ -45,6 +45,9 @@ public class Product implements Parcelable {
     @SerializedName("product_quantity")
     @Expose
     private Integer productQuantity;
+    @SerializedName("product_quantity_choosen")
+    @Expose
+    private Integer productQuantityChoosen;
     @SerializedName("product_images")
     @Expose
     private List<ProductImage> productImages = null;
@@ -78,6 +81,7 @@ public class Product implements Parcelable {
         this.productCurrency = ((String) in.readValue((String.class.getClassLoader())));
         this.productReviewcount = ((Integer) in.readValue((Integer.class.getClassLoader())));
         this.productQuantity = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.productQuantityChoosen = ((Integer) in.readValue((Integer.class.getClassLoader())));
         in.readList(this.productImages, (marcelmax.shoppingcart.model.ProductImage.class.getClassLoader()));
     }
 
@@ -180,6 +184,14 @@ public class Product implements Parcelable {
         this.productQuantity = productQuantity;
     }
 
+    public Integer getProductQuantityChoosen() {
+        return productQuantityChoosen;
+    }
+
+    public void setProductQuantityChoosen(Integer productQuantityChoosen) {
+        this.productQuantityChoosen = productQuantityChoosen;
+    }
+
     public List<ProductImage> getProductImages() {
         return productImages;
     }
@@ -201,6 +213,7 @@ public class Product implements Parcelable {
         dest.writeValue(productCurrency);
         dest.writeValue(productReviewcount);
         dest.writeValue(productQuantity);
+        dest.writeValue(productQuantityChoosen);
         dest.writeList(productImages);
     }
 
@@ -211,19 +224,20 @@ public class Product implements Parcelable {
     @Override
     public String toString() {
         return "Product{" +
-                "productId=" + productId +"\n"+
-                ", productName='" + productName + '\'' +"\n"+
-                ", productDescriptionShort='" + productDescriptionShort + '\'' +"\n"+
-                ", productDescription='" + productDescription + '\'' +"\n"+
-                ", productRating=" + productRating +"\n"+
-                ", productImg='" + productImg + '\'' +"\n"+
-                ", productDate='" + productDate + '\'' +"\n"+
-                ", productAvailable=" + productAvailable +"\n"+
-                ", productPrice=" + productPrice +"\n"+
-                ", productCurrency='" + productCurrency + '\'' +"\n"+
-                ", productReviewcount=" + productReviewcount +"\n"+
-                ", productQuantity=" + productQuantity +"\n"+
-                ", productImages=" + productImages +"\n"+
-                '}' +"\n";
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productDescriptionShort='" + productDescriptionShort + '\'' +
+                ", productDescription='" + productDescription + '\'' +
+                ", productRating=" + productRating +
+                ", productImg='" + productImg + '\'' +
+                ", productDate='" + productDate + '\'' +
+                ", productAvailable=" + productAvailable +
+                ", productPrice=" + productPrice +
+                ", productCurrency='" + productCurrency + '\'' +
+                ", productReviewcount=" + productReviewcount +
+                ", productQuantity=" + productQuantity +
+                ", productQuantityChoosen=" + productQuantityChoosen +
+                ", productImages=" + productImages +
+                '}';
     }
 }

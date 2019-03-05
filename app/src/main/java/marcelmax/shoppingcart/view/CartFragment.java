@@ -120,7 +120,8 @@ public class CartFragment extends Fragment {
             addressArrayList = new ArrayList<>();
         }
         Log.v("", "ADDRESSADPATER " + addressArrayList);
-        Address address = new Address("Marcel", "Peters", "Buersche Straße", "29", "49074", "Osnabrück", "http://dummyimage.com/113x233.jpg/ff4444/ffffff");
+        //Mockdata
+        Address address = new Address("Max", "Mustermann", "Muster Straße", "10", "55555", "Musterstadt", "http://dummyimage.com/113x233.jpg/ff4444/ffffff");
 
         addressArrayList.add(address);
         adjustLayout(newAddressButton, addressRecyclerView, addressArrayList, addressEmptyView, 1);
@@ -132,11 +133,11 @@ public class CartFragment extends Fragment {
         //todo handle click
     }
 
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
     }
 
-    //todo nested scrollview to cart screen
 }

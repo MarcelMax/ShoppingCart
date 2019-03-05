@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.travijuu.numberpicker.library.Enums.ActionEnum;
+import com.travijuu.numberpicker.library.Interface.ValueChangedListener;
 import com.travijuu.numberpicker.library.NumberPicker;
 
 import java.util.ArrayList;
@@ -25,8 +27,11 @@ import marcelmax.shoppingcart.adapter.ViewPagerAdapter;
 import marcelmax.shoppingcart.model.Product;
 import marcelmax.shoppingcart.model.ProductImage;
 
+import static com.travijuu.numberpicker.library.Enums.ActionEnum.INCREMENT;
+
 public class ProductDetailFragment extends Fragment {
 
+    private static final Object ActionEnum = null;
     private Unbinder unbinder;
     @BindView(R.id.tv_product_name)
     TextView productname;
@@ -99,22 +104,30 @@ public class ProductDetailFragment extends Fragment {
         }
         Log.v("", "" + imagesList);
     }
-
-    @Override public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
     //todo handle add to cart button
 
     @OnClick(R.id.btn_add_to_cart)
     public void addToCart(){
-        Log.v("","ADDCARTPRODUCT " + product);
+        Log.v("","max quantity before" + product.getProductQuantity());
+
         if (CartFragment.cartArrayList == null){
             CartFragment.cartArrayList = new ArrayList<>();
-
         }
-        product.setProductQuantity(numberPicker.getValue());
+
+        if (CartFragment.cartArrayList.contains(product)){
+            Log.v("","IS ALREADY IN LIST" + product);
+            CartFragment.cartArrayList.remove(product);
+        }
+
+        product.setProductQuantityChoosen(numberPicker.getValue());
         CartFragment.cartArrayList.add(product);
 
+
+        //todo handle max quantity setting
+    }
+
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

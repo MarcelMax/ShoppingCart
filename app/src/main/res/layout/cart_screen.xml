@@ -6,124 +6,130 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <RelativeLayout
-        android:id="@+id/upper_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/order_confirmation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:text="@string/cart_title"
-            android:textSize="30dp"
-            android:textStyle="bold" />
-
         <RelativeLayout
-            android:id="@+id/address_container"
+            android:id="@+id/upper_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/order_confirmation"
-            android:layout_marginTop="16dp">
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/delivery_address"
+                android:id="@+id/order_confirmation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="@string/cart_delivery_address"
-                android:textSize="16sp" />
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/cart_title"
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_address"
+            <RelativeLayout
+                android:id="@+id/address_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/delivery_address"
-                android:layout_marginTop="8dp"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:overScrollMode="never"
-                android:scrollbars="horizontal" />
+                android:layout_below="@+id/order_confirmation"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/delivery_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cart_delivery_address"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delivery_address"
+                    android:layout_marginTop="8dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:overScrollMode="never"
+                    android:scrollbars="horizontal" />
+
+                <TextView
+                    android:id="@+id/tv_empty_view_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/delivery_address"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/cart_no_address_available"
+                    android:visibility="gone"
+                    tools:text="TEST" />
+
+                <Button
+                    android:id="@+id/btn_new_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rv_address"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/orange_rounded_button"
+                    android:padding="8dp"
+                    android:text="@string/cart_delivery_address_new"
+                    android:textAllCaps="false" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/btn_new_address"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/darkGrey" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/lower_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/upper_container"
+            android:layout_marginTop="8dp">
 
             <TextView
-                android:id="@+id/tv_empty_view_address"
+                android:id="@+id/cart_ordered_products"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cart_ordered_products"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_cart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/delivery_address"
+                android:layout_below="@id/cart_ordered_products"
                 android:layout_marginTop="8dp"
-                android:text="@string/cart_no_address_available"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:scrollbars="vertical" />
+
+            <TextView
+                android:id="@+id/tv_empty_view_cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cart_ordered_products"
+                android:layout_marginTop="8dp"
+                android:text="@string/cart_no_products_in_cart"
                 android:visibility="gone"
                 tools:text="TEST" />
 
             <Button
-                android:id="@+id/btn_new_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rv_address"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/orange_rounded_button"
-                android:padding="8dp"
-                android:text="@string/cart_delivery_address_new"
-                android:textAllCaps="false"
-                />
-
-            <View
+                android:id="@+id/btn_order"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/btn_new_address"
-                android:layout_marginTop="16dp"
-                android:background="@color/darkGrey" />
-
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rv_cart"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/orange_rounded_button"
+                android:text="@string/cart_order"
+                android:textAllCaps="false" />
         </RelativeLayout>
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/lower_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/upper_container"
-        android:layout_marginTop="8dp">
-
-        <TextView
-            android:id="@+id/cart_ordered_products"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cart_ordered_products"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_cart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/cart_ordered_products"
-            android:layout_marginTop="8dp"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:scrollbars="vertical" />
-
-        <TextView
-            android:id="@+id/tv_empty_view_cart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/cart_ordered_products"
-            android:layout_marginTop="8dp"
-            android:text="@string/cart_no_products_in_cart"
-            android:visibility="gone"
-            tools:text="TEST" />
-        <Button
-            android:id="@+id/btn_order"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rv_cart"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/orange_rounded_button"
-            android:text="@string/cart_order"
-            android:textAllCaps="false" />
-    </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

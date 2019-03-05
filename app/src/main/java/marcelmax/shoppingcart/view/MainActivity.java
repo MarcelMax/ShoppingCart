@@ -15,11 +15,7 @@ import marcelmax.shoppingcart.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    //todo benutzer anlegen?
     //todo bestellbestätigung
-    //todo recyclerview für cart screen mit ausgewählten products
-    //todo screen für adress eingabe
-    //todo recyclerview für für adressen
     //todo möglichkeit sachen aus dem warenkorb zu entfernen
 
     @BindView(R.id.toolbar)
