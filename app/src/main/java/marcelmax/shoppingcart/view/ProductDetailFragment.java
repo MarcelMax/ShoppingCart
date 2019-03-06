@@ -11,9 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.travijuu.numberpicker.library.Enums.ActionEnum;
-import com.travijuu.numberpicker.library.Interface.ValueChangedListener;
 import com.travijuu.numberpicker.library.NumberPicker;
 
 import java.util.ArrayList;
@@ -27,11 +26,8 @@ import marcelmax.shoppingcart.adapter.ViewPagerAdapter;
 import marcelmax.shoppingcart.model.Product;
 import marcelmax.shoppingcart.model.ProductImage;
 
-import static com.travijuu.numberpicker.library.Enums.ActionEnum.INCREMENT;
-
 public class ProductDetailFragment extends Fragment {
 
-    private static final Object ActionEnum = null;
     private Unbinder unbinder;
     @BindView(R.id.tv_product_name)
     TextView productname;
@@ -67,12 +63,10 @@ public class ProductDetailFragment extends Fragment {
         viewPager.setAdapter(viewPagerAdapter);
     }
 
-
     /**
      * fetches the product and populate the view with content
      */
     private void fillWithContent() {
-        // Product product;
         Bundle bundle = this.getArguments();
 
         imagesList = new ArrayList<>();
@@ -104,29 +98,32 @@ public class ProductDetailFragment extends Fragment {
         }
         Log.v("", "" + imagesList);
     }
-    //todo handle add to cart button
 
     @OnClick(R.id.btn_add_to_cart)
-    public void addToCart(){
-        Log.v("","max quantity before" + product.getProductQuantity());
+    public void addToCart() {
+        Log.v("", "max quantity before" + product.getProductQuantity());
 
-        if (CartFragment.cartArrayList == null){
+        if (CartFragment.cartArrayList == null) {
             CartFragment.cartArrayList = new ArrayList<>();
         }
 
-        if (CartFragment.cartArrayList.contains(product)){
-            Log.v("","IS ALREADY IN LIST" + product);
+        if (CartFragment.cartArrayList.contains(product)) {
+            Log.v("", "IS ALREADY IN LIST" + product);
             CartFragment.cartArrayList.remove(product);
         }
 
         product.setProductQuantityChoosen(numberPicker.getValue());
         CartFragment.cartArrayList.add(product);
 
+        Toast.makeText(getContext(),
+                getResources().getString(R.string.cart_added_product),
+                Toast.LENGTH_LONG).show();
 
-        //todo handle max quantity setting
+        //todo handle max quantity setting e.g. when the uses choose quantity, the max quantity should decrease/ increase accordingly to the value
     }
 
-    @Override public void onDestroyView() {
+    @Override
+    public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
     }

@@ -8,6 +8,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface IProductDataService {
+
     @GET("arrayproduct.json")
-    Call<List<ProductDBResponse>> getProducts(@Query("key")String apiKey);
+    Call<List<ProductDBResponse>> getProducts(@Query("key") String apiKey);
+
 }

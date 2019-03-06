@@ -28,9 +28,8 @@ import static androidx.navigation.Navigation.findNavController;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
-
     private Context mContext;
-    private ArrayList<Product> productArrayList; // list of Products
+    private ArrayList<Product> productArrayList; // list of Products that the user can schoose from to add to the cart
 
     public ProductAdapter(Context mContext, ArrayList<Product> productArrayList) {
         this.mContext = mContext;
@@ -40,17 +39,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.product_list_item,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.product_list_item, viewGroup, false);
         return new ProductViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i) {
         Product product = productArrayList.get(i);
-        // productViewHolder.productDate.setText(product.getProductDate());
-        productViewHolder.productPrice.setText(mContext.getResources().getString(R.string.tv_price,product.getProductPrice(),product.getProductCurrency()));
+        productViewHolder.productPrice.setText(mContext.getResources().getString(R.string.tv_price, product.getProductPrice(), product.getProductCurrency()));
         productViewHolder.productName.setText(product.getProductName());
-        productViewHolder.productReviewCount.setText(mContext.getResources().getString(R.string.tv_reviewCount,product.getProductReviewcount()));
+        productViewHolder.productReviewCount.setText(mContext.getResources().getString(R.string.tv_reviewCount, product.getProductReviewcount()));
         productViewHolder.productShortDescription.setText(product.getProductDescriptionShort());
         productViewHolder.productRating.setRating(Float.parseFloat(product.getProductRating().toString()));
         Picasso.get()
@@ -63,7 +61,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return productArrayList.size();
     }
 
-    public class ProductViewHolder extends RecyclerView.ViewHolder{
+    public class ProductViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.img_product_image)
         ImageView productImage;
         @BindView(R.id.rb_star_rating)
@@ -79,28 +77,24 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
 
-
         @OnClick(R.id.cv_cardview)
-        public void changeFragment(){
+        public void changeFragment() {
 
-            int position = getAdapterPosition();
             Bundle bundle = new Bundle();
             MainActivity mainActivity = (MainActivity) mContext;
-            final NavController navController = findNavController(mainActivity,R.id.my_nav_host_fragment);
-            Product selectedProduct = productArrayList.get(position);
-            Log.v("********Clicked ","*****POS. " + position+ " PRODUCT"+ selectedProduct);
+            final NavController navController = findNavController(mainActivity, R.id.my_nav_host_fragment);
 
+            if (productArrayList != null) {
+                Log.v("********Clicked ", "*****POS. " + getAdapterPosition() + " PRODUCT" + productArrayList.get(getAdapterPosition()));
 
-            if (productArrayList != null){
-                bundle.putParcelable("pass_product",selectedProduct);
-                navController.navigate(R.id.action_productFragment_to_productDetailFragment,bundle);
-                //Navigation.findNavController(itemView).navigate(R.id.productDetailFragment,bundle);
-            }
-            else {
-                Log.e("PRODUCTADAPTER","LIST IS EMPTY");
+                bundle.putParcelable("pass_product", productArrayList.get(getAdapterPosition()));
+                navController.navigate(R.id.action_productFragment_to_productDetailFragment, bundle);
+
+            } else {
+                Log.e("PRODUCTADAPTER", "LIST IS EMPTY");
             }
 
         }

@@ -15,13 +15,24 @@ import marcelmax.shoppingcart.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    //todo bestellbestätigung
-    //todo möglichkeit sachen aus dem warenkorb zu entfernen
+    /**
+     * Shopping cart is a mock app to simulate shopping.
+     * You can select a variety of products and add it to your cart
+     * To fetch the product data I used Retrofit. The data is provided by mockaroo
+     * which lets you create a Json File and fill it with "random values"
+     *
+     * for navigation i used the new navigationcomponent.
+     *
+     * I'm planning on moving the whole project to match the mvvm pattern,
+     * but currently I#m new to this and try reading in to it.
+     *
+     * there are a few things that still are not working as intended, but
+     * i'm aware of it and wrote todos for  e.g. quantity handling
+     *
+     */
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
-    public NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupNavigation() {
         setSupportActionBar(toolbar);
 
-        //setup Backbutton
+        //setup Back button
         NavController navController = Navigation.findNavController(this, R.id.my_nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this,navController);
         getSupportActionBar().setTitle(R.string.app_name);
@@ -66,5 +77,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //todo https://www.journaldev.com/22299/android-jetpack-navigation-architecture
 }

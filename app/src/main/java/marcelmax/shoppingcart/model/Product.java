@@ -53,7 +53,6 @@ public class Product implements Parcelable {
     private List<ProductImage> productImages = null;
     public final static Parcelable.Creator<Product> CREATOR = new Creator<Product>() {
 
-
         @SuppressWarnings({
                 "unchecked"
         })
@@ -65,8 +64,7 @@ public class Product implements Parcelable {
             return (new Product[size]);
         }
 
-    }
-            ;
+    };
 
     protected Product(Parcel in) {
         this.productId = ((Integer) in.readValue((Integer.class.getClassLoader())));
@@ -86,6 +84,40 @@ public class Product implements Parcelable {
     }
 
     public Product() {
+    }
+
+    /**
+     *
+     * @param productId = id of the product
+     * @param productName = name of the product
+     * @param productDescriptionShort = short description of the product to be displayed a preview
+     * @param productDescription = the long product description that is displayed in the detail view
+     * @param productRating = the products rating
+     * @param productImg = the preview image
+     * @param productDate = the deliverydate
+     * @param productAvailable = the availability of the product //todo for now this does nothing but could later be a indicator for diffrent view types
+     * @param productPrice = price of the product
+     * @param productCurrency = the product currency eg. EUR
+     * @param productReviewcount = the reviewcount of the product
+     * @param productQuantity = the max. available quantity
+     * @param productQuantityChoosen = the quantity the user chooses
+     * @param productImages = more images of the product
+     */
+    public Product(Integer productId, String productName, String productDescriptionShort, String productDescription, Double productRating, String productImg, String productDate, Boolean productAvailable, Double productPrice, String productCurrency, Integer productReviewcount, Integer productQuantity, Integer productQuantityChoosen, List<ProductImage> productImages) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productDescriptionShort = productDescriptionShort;
+        this.productDescription = productDescription;
+        this.productRating = productRating;
+        this.productImg = productImg;
+        this.productDate = productDate;
+        this.productAvailable = productAvailable;
+        this.productPrice = productPrice;
+        this.productCurrency = productCurrency;
+        this.productReviewcount = productReviewcount;
+        this.productQuantity = productQuantity;
+        this.productQuantityChoosen = productQuantityChoosen;
+        this.productImages = productImages;
     }
 
     public Integer getProductId() {

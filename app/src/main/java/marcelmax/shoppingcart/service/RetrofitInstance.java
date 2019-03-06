@@ -11,8 +11,7 @@ public class RetrofitInstance {
     private static Retrofit retrofit = null;
     private static String BASE_URL = "https://my.api.mockaroo.com/";
 
-
-    // der return Typ ist das Interface (hier: GetCountryDataService), da hierüber die Retrofit instance angesprochen wird
+    //setup retrofit
     public static IProductDataService getService() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -28,10 +27,10 @@ public class RetrofitInstance {
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();
-            Log.v("***********BASEURL","RETROFITINSTANCE: " + BASE_URL.toString());
+            Log.v("***********BASEURL", "RETROFITINSTANCE: " + BASE_URL.toString());
 
         }
-        // return retrofit instance mit create und dem interface
+        // return retrofit instance with create and interface
         return retrofit.create(IProductDataService.class);
     }
 }

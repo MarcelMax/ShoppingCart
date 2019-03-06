@@ -15,7 +15,6 @@ public class ProductDBResponse implements Parcelable {
     private List<Product> product = null;
     public final static Parcelable.Creator<ProductDBResponse> CREATOR = new Creator<ProductDBResponse>() {
 
-
         @SuppressWarnings({
                 "unchecked"
         })

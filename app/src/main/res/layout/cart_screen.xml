@@ -45,7 +45,9 @@
                     android:clipToPadding="false"
                     android:orientation="horizontal"
                     android:overScrollMode="never"
-                    android:scrollbars="horizontal" />
+                    android:scrollbars="horizontal"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/recycler_view_item" />
 
                 <TextView
                     android:id="@+id/tv_empty_view_address"
@@ -106,7 +108,9 @@
                 android:layout_marginTop="8dp"
                 android:clipToPadding="false"
                 android:overScrollMode="never"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical"
+                tools:itemCount="3"
+                tools:listitem="@layout/recycler_view_item_1" />
 
             <TextView
                 android:id="@+id/tv_empty_view_cart"

@@ -6,14 +6,12 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ProductImage implements Parcelable
-{
+public class ProductImage implements Parcelable {
 
     @SerializedName("preview_images")
     @Expose
     private String previewImages;
     public final static Parcelable.Creator<ProductImage> CREATOR = new Creator<ProductImage>() {
-
 
         @SuppressWarnings({
                 "unchecked"
@@ -26,8 +24,7 @@ public class ProductImage implements Parcelable
             return (new ProductImage[size]);
         }
 
-    }
-            ;
+    };
 
     protected ProductImage(Parcel in) {
         this.previewImages = ((String) in.readValue((String.class.getClassLoader())));
@@ -55,7 +52,7 @@ public class ProductImage implements Parcelable
     @Override
     public String toString() {
         return "ProductImage{" +
-                "previewImages='" + previewImages + '\'' +"\n"+
+                "previewImages='" + previewImages + '\'' + "\n" +
                 '}';
     }
 }

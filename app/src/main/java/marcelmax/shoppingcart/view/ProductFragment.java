@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -53,7 +52,7 @@ public class ProductFragment extends Fragment {
      */
     private void getProducts() {
 
-        if (products == null){
+        if (products == null) {
             // 1 use Retrofit singleton through API Interface
             IProductDataService productDataService = RetrofitInstance.getService();
             Log.v("***********", "PDS: " + productDataService.toString());
@@ -95,8 +94,7 @@ public class ProductFragment extends Fragment {
                             + "\n THROWABLE " + t);
                 }
             });
-        }
-        else {
+        } else {
             prepareRecyclerView();
         }
 
@@ -107,14 +105,14 @@ public class ProductFragment extends Fragment {
         productAdapter = new ProductAdapter(getContext(), products);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        //recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(productAdapter);
         productAdapter.notifyDataSetChanged();
 
     }
 
-    @Override public void onDestroyView() {
+    @Override
+    public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
     }

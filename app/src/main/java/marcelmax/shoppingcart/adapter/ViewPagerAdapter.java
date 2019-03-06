@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class ViewPagerAdapter extends PagerAdapter {
 
     private Context mContext;
-    private ArrayList<String> imageUrls;
+    private ArrayList<String> imageUrls; // contains the previewImages for the product detail view
 
     public ViewPagerAdapter(Context mContext, ArrayList<String> imageUrls) {
         this.mContext = mContext;

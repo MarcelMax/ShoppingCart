@@ -5,6 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="100dp"
     android:layout_margin="8dp"
+    android:id="@+id/cv_cardview"
     android:background="@color/colorPrimary"
     android:padding="8dp"
     app:cardCornerRadius="10dp"

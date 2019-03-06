@@ -3,7 +3,6 @@ package marcelmax.shoppingcart.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +15,13 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import marcelmax.shoppingcart.R;
 import marcelmax.shoppingcart.model.Address;
 
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressViewHolder> {
 
     private Context mContext;
-    private ArrayList<Address> addressArrayList;
+    private ArrayList<Address> addressArrayList; // holds the addresses of the user
 
     public AddressAdapter(Context mContext, ArrayList<Address> addressArrayList) {
         this.mContext = mContext;
@@ -33,7 +31,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
     @NonNull
     @Override
     public AddressViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.address_list_item,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.address_list_item, viewGroup, false);
         return new AddressViewHolder(view);
     }
 
@@ -56,7 +54,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
         return addressArrayList.size();
     }
 
-    public class AddressViewHolder extends RecyclerView.ViewHolder{
+    public class AddressViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_address_firstname)
         TextView firstName;
         @BindView(R.id.tv_address_lastname)
@@ -74,8 +72,8 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
 
         public AddressViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
-    }
 
+    }
 }
