@@ -36,7 +36,6 @@ public class ProductFragment extends Fragment {
     private Unbinder unbinder;
     private ArrayList<Product> products;
     private ProductAdapter productAdapter;
-    private ArrayList<ProductDBResponse> dbResponseArrayList = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.product_list, container, false);

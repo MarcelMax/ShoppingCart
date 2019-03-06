@@ -1,8 +1,10 @@
 package marcelmax.shoppingcart.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +15,15 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import androidx.navigation.NavController;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import marcelmax.shoppingcart.R;
 import marcelmax.shoppingcart.model.Product;
+import marcelmax.shoppingcart.view.MainActivity;
+
+import static androidx.navigation.Navigation.findNavController;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
@@ -79,7 +85,24 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         }
 
+        @OnClick(R.id.cv_cardview)
+        public void changeFragment() {
 
+            Bundle bundle = new Bundle();
+            MainActivity mainActivity = (MainActivity) mContext;
+            final NavController navController = findNavController(mainActivity, R.id.my_nav_host_fragment);
+
+            if (cartArrayList != null) {
+                Log.v("********Clicked ", "*****POS. " + getAdapterPosition() + " PRODUCT" + cartArrayList.get(getAdapterPosition()));
+
+                bundle.putParcelable("pass_product", cartArrayList.get(getAdapterPosition()));
+                navController.navigate(R.id.action_cartFragment_to_productDetailFragment, bundle);
+
+            } else {
+                Log.e("PRODUCTADAPTER", "LIST IS EMPTY");
+            }
+
+        }
 
     }
 }
