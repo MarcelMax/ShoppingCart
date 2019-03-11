@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.navigation.NavController;
 import butterknife.BindView;
@@ -30,10 +31,28 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     private Context mContext;
     private ArrayList<Product> productArrayList; // list of Products that the user can schoose from to add to the cart
+    private List<Product> productList; // list of Products that the user can schoose from to add to the cart
 
     public ProductAdapter(Context mContext, ArrayList<Product> productArrayList) {
         this.mContext = mContext;
         this.productArrayList = productArrayList;
+    }
+
+    public ProductAdapter(Context mContext) {
+        this.mContext = mContext;
+    }
+
+    public ProductAdapter(Context mContext, List<Product> productList) {
+        this.mContext = mContext;
+        this.productList = productList;
+    }
+
+    public ProductAdapter() {
+    }
+
+    public void setProductList(List<Product> products){
+        productList = products;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -58,7 +77,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public int getItemCount() {
-        return productArrayList.size();
+        if (productArrayList != null){
+            return productArrayList.size();
+        }
+       return 0;
+    }
+
+    public void setRecipes(List<Product> products){
+        productList = products;
+
+        notifyDataSetChanged();
+
     }
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {

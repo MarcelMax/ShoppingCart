@@ -86,6 +86,8 @@ public class Product implements Parcelable {
     public Product() {
     }
 
+
+
     /**
      *
      * @param productId = id of the product
@@ -118,6 +120,28 @@ public class Product implements Parcelable {
         this.productQuantity = productQuantity;
         this.productQuantityChoosen = productQuantityChoosen;
         this.productImages = productImages;
+    }
+
+    public Product(Integer productId, String productName, String productDescriptionShort, String productDescription, Double productRating, String productImg, String productDate, Boolean productAvailable, Double productPrice, String productCurrency, Integer productReviewcount, Integer productQuantity, Integer productQuantityChoosen) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productDescriptionShort = productDescriptionShort;
+        this.productDescription = productDescription;
+        this.productRating = productRating;
+        this.productImg = productImg;
+        this.productDate = productDate;
+        this.productAvailable = productAvailable;
+        this.productPrice = productPrice;
+        this.productCurrency = productCurrency;
+        this.productReviewcount = productReviewcount;
+        this.productQuantity = productQuantity;
+        this.productQuantityChoosen = productQuantityChoosen;
+    }
+
+    public Product(String productName) {
+
+        this.productName = productName;
+
     }
 
     public Integer getProductId() {
@@ -255,7 +279,7 @@ public class Product implements Parcelable {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "\n" +"Product{" +
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", productDescriptionShort='" + productDescriptionShort + '\'' +

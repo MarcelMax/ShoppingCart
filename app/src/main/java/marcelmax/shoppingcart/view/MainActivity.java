@@ -23,8 +23,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * for navigation i used the new navigationcomponent.
      *
-     * I'm planning on moving the whole project to match the mvvm pattern,
-     * but currently I#m new to this and try reading in to it.
+     * The architecture used is the mvvm pattern.
      *
      * there are a few things that still are not working as intended, but
      * i'm aware of it and wrote todos for  e.g. quantity handling
