@@ -1,4 +1,4 @@
-package marcelmax.shoppingcart.Util;
+package marcelmax.shoppingcart.util;
 
 public class Constants {
 

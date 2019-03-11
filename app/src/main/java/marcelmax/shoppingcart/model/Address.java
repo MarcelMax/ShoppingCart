@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Address implements Parcelable {
+public class Address implements Parcelable, ViewType {
 
     @SerializedName("firstName")
     @Expose
@@ -165,4 +165,10 @@ public class Address implements Parcelable {
                 ", addressImage='" + addressImage + '\'' +
                 '}';
     }
+
+    @Override
+    public int getType() {
+        return ViewType.ADDRESS_TYPE;
+    }
+
 }

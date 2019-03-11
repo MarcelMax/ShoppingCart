@@ -1,9 +1,8 @@
-package marcelmax.shoppingcart.Util;
+package marcelmax.shoppingcart.util;
 
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import marcelmax.shoppingcart.model.Product;
 

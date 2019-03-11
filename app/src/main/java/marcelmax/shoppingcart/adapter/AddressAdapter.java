@@ -19,6 +19,7 @@ import marcelmax.shoppingcart.R;
 import marcelmax.shoppingcart.model.Address;
 
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressViewHolder> {
+//todo delete?
 
     private Context mContext;
     private ArrayList<Address> addressArrayList; // holds the addresses of the user

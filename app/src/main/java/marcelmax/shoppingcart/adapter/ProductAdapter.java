@@ -28,6 +28,7 @@ import marcelmax.shoppingcart.view.MainActivity;
 import static androidx.navigation.Navigation.findNavController;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
+//todo delete? https://medium.com/@zackcosborn/display-objects-of-different-types-in-a-recyclerview-8b7d8e3968aa
 
     private Context mContext;
     private ArrayList<Product> productArrayList; // list of Products that the user can schoose from to add to the cart

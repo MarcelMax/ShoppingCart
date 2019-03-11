@@ -6,7 +6,7 @@ import android.util.Log;
 
 import java.util.List;
 
-import marcelmax.shoppingcart.Util.Constants;
+import marcelmax.shoppingcart.util.Constants;
 import marcelmax.shoppingcart.model.Product;
 import marcelmax.shoppingcart.model.ProductDBResponse;
 import marcelmax.shoppingcart.service.RetrofitInstance;
@@ -61,6 +61,7 @@ public class ProductRepository {
         return data;
     }
 
+    // call for the Retrofit query
     public Call<List<ProductDBResponse>> getProductsResponse() {
         return RetrofitInstance.getRecipeApi().
                 getProducts(Constants.API_KEY);

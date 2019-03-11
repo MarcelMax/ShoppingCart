@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Product implements Parcelable {
+public class Product implements Parcelable, ViewType {
     @SerializedName("product_id")
     @Expose
     private Integer productId;
@@ -296,4 +296,10 @@ public class Product implements Parcelable {
                 ", productImages=" + productImages +
                 '}';
     }
+
+    @Override
+    public int getType() {
+        return ViewType.PRODUCT_TYPE;
+    }
+
 }

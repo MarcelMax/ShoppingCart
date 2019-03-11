@@ -26,6 +26,7 @@ import marcelmax.shoppingcart.view.MainActivity;
 import static androidx.navigation.Navigation.findNavController;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
+//todo delete?
 
     private Context mContext;
     private ArrayList<Product> cartArrayList; //holds the products the user added to the cart

@@ -22,7 +22,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import marcelmax.shoppingcart.R;
-import marcelmax.shoppingcart.Util.RecyclerItemClickListener;
+import marcelmax.shoppingcart.adapter.MainAdapter;
+import marcelmax.shoppingcart.model.CartItem;
+import marcelmax.shoppingcart.util.RecyclerItemClickListener;
 import marcelmax.shoppingcart.adapter.AddressAdapter;
 import marcelmax.shoppingcart.adapter.CartAdapter;
 import marcelmax.shoppingcart.model.Address;
@@ -45,14 +47,15 @@ public class CartFragment extends Fragment {
     Button orderButton;
 
     public static ArrayList<Address> addressArrayList;
-    private AddressAdapter addressAdapter;
+    public static ArrayList<CartItem> cartArrayList;
 
-    public static ArrayList<Product> cartArrayList;
-    private CartAdapter cartAdapter;
-
+    private MainAdapter mainAdapter;
     private Address address;
-    public static Address selectedAddress; //todo static?
+    public static Address selectedAddress; // atm its not really necessary, but if you want to send an invoice this might change
+//todo static?
 
+//todo implement Interface on click
+    //todo collapsingtoolbar for this screen
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cart_screen, container, false);
         unbinder = ButterKnife.bind(this, rootView);
@@ -91,14 +94,14 @@ public class CartFragment extends Fragment {
      * @param recyclerView = rv which should be inflated
      * @param arrayList = list with either addresses or products in cart
      * @param emptyView = a view to be shown when lists are empty
-     * @param adapter = adapter for the appropriate rv
+     * @param viewType = adapter for the appropriate rv
      */
-    public void adjustLayout(Button button, RecyclerView recyclerView, ArrayList arrayList, TextView emptyView, int adapter) {
+    public void adjustLayout(Button button, RecyclerView recyclerView, ArrayList arrayList, TextView emptyView, int viewType) {
         int viewRuleOne;
         int viewRuleTwo;
 
         // shows the appropriate views according to the adapter
-        if (adapter == 1) {
+        if (viewType == 1) {
             viewRuleOne = R.id.tv_empty_view_address;
             viewRuleTwo = R.id.rv_address;
         } else {
@@ -117,29 +120,26 @@ public class CartFragment extends Fragment {
             recyclerView.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
             params.addRule(RelativeLayout.BELOW, viewRuleTwo);
-            prepareRecyclerView(recyclerView, adapter);
-
+            prepareRecyclerViewMain(recyclerView, viewType);
         }
 
     }
 
-    private void prepareRecyclerView(RecyclerView recyclerView, int adapter) {
-        if (adapter == 1) {
-            addressAdapter = new AddressAdapter(getContext(), addressArrayList);
+    private void prepareRecyclerViewMain(RecyclerView recyclerView, int viewType) {
+        mainAdapter = new MainAdapter(getContext());
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mainAdapter);
+        
+        if (viewType == 1) {
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-            recyclerView.setItemAnimator(new DefaultItemAnimator());
-            recyclerView.setAdapter(addressAdapter);
-            addressAdapter.notifyDataSetChanged();
-
-        } else {
-            cartAdapter = new CartAdapter(getContext(), cartArrayList);
+            mainAdapter.setViewTypeList(addressArrayList);
+        }else {
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-            recyclerView.setItemAnimator(new DefaultItemAnimator());
-            recyclerView.setAdapter(cartAdapter);
-            cartAdapter.notifyDataSetChanged();
+            mainAdapter.setViewTypeList(cartArrayList);
         }
 
     }
+
 
     @OnClick(R.id.btn_new_address)
     public void addAddress() {

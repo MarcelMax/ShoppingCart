@@ -25,22 +25,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProductFragmentViewModel extends ViewModel {
 
-    //funktioniert auch mit live/ mutable
     private LiveData<List<Product>> mProducts;
     private ProductRepository mProductRepository;
 
 
-    public void init(){
-        if (this.mProducts != null){
-            return;
-        }
-        mProductRepository = ProductRepository.getInstance();
-        mProducts = mProductRepository.getProducts();
-    }
-
-
-
-    //we will call this method to get the data
+    //call this method to get the data
     public LiveData<List<Product>> getProducts() {
         if (this.mProducts == null){
             mProductRepository = ProductRepository.getInstance();

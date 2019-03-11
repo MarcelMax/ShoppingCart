@@ -23,6 +23,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import marcelmax.shoppingcart.R;
 import marcelmax.shoppingcart.adapter.ViewPagerAdapter;
+import marcelmax.shoppingcart.model.CartItem;
 import marcelmax.shoppingcart.model.Product;
 import marcelmax.shoppingcart.model.ProductImage;
 
@@ -46,6 +47,7 @@ public class ProductDetailFragment extends Fragment {
 
     private ArrayList<String> imagesList;
     private Product product;
+    private CartItem cartItem;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.product_list_item_detail, container, false);
@@ -101,19 +103,22 @@ public class ProductDetailFragment extends Fragment {
 
     @OnClick(R.id.btn_add_to_cart)
     public void addToCart() {
-        Log.v("", "max quantity before" + product.getProductQuantity());
+       // Log.v("", "max quantity before" + product.getCartQuantity());
+        product.setProductQuantityChoosen(numberPicker.getValue());
+      //  cartItem = new CartItem(product.getProductImg(),product.getProductName(),product.getProductQuantityChoosen(),product.getProductPrice(),product.getProductDate(), product.getProductCurrency());
+        cartItem = new CartItem(product);
 
         if (CartFragment.cartArrayList == null) {
             CartFragment.cartArrayList = new ArrayList<>();
         }
 
-        if (CartFragment.cartArrayList.contains(product)) {
-            Log.v("", "IS ALREADY IN LIST" + product);
-            CartFragment.cartArrayList.remove(product);
+        if (CartFragment.cartArrayList.contains(cartItem)) {
+            Log.v("", "IS ALREADY IN LIST" + cartItem);
+            CartFragment.cartArrayList.remove(cartItem);
         }
 
-        product.setProductQuantityChoosen(numberPicker.getValue());
-        CartFragment.cartArrayList.add(product);
+
+        CartFragment.cartArrayList.add(cartItem);
 
         Toast.makeText(getContext(),
                 getResources().getString(R.string.cart_added_product),
