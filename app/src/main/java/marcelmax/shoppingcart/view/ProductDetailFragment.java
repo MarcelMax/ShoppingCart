@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import marcelmax.shoppingcart.R;
+import marcelmax.shoppingcart.adapter.MainAdapter;
 import marcelmax.shoppingcart.adapter.ViewPagerAdapter;
 import marcelmax.shoppingcart.model.CartItem;
 import marcelmax.shoppingcart.model.Product;
@@ -81,7 +82,7 @@ public class ProductDetailFragment extends Fragment {
             productDescription.setText(product.getProductDescription());
             numberPicker.setMax(product.getProductQuantity());
             addImagesToList(product);
-
+            cartItem = new CartItem(product);
         } else {
             Log.v("", "BUNDLE IS NULL");
         }
@@ -105,8 +106,6 @@ public class ProductDetailFragment extends Fragment {
     public void addToCart() {
        // Log.v("", "max quantity before" + product.getCartQuantity());
         product.setProductQuantityChoosen(numberPicker.getValue());
-      //  cartItem = new CartItem(product.getProductImg(),product.getProductName(),product.getProductQuantityChoosen(),product.getProductPrice(),product.getProductDate(), product.getProductCurrency());
-        cartItem = new CartItem(product);
 
         if (CartFragment.cartArrayList == null) {
             CartFragment.cartArrayList = new ArrayList<>();
@@ -114,7 +113,7 @@ public class ProductDetailFragment extends Fragment {
 
         if (CartFragment.cartArrayList.contains(cartItem)) {
             Log.v("", "IS ALREADY IN LIST" + cartItem);
-            CartFragment.cartArrayList.remove(cartItem);
+            CartFragment.cartArrayList.remove(this.cartItem);
         }
 
 

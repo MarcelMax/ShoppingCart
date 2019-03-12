@@ -1,6 +1,9 @@
 package marcelmax.shoppingcart.model;
 
-public class CartItem implements ViewType {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class CartItem implements Parcelable, ViewType {
 
     /**
      * Model class for the cart items
@@ -9,6 +12,20 @@ public class CartItem implements ViewType {
 
     private Product product;
 
+    public final static Parcelable.Creator<Product> CREATOR = new Creator<Product>() {
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        public Product[] newArray(int size) {
+            return (new Product[size]);
+        }
+
+    };
 
     public CartItem(Product product) {
         this.product = product;
@@ -30,9 +47,18 @@ public class CartItem implements ViewType {
     }
 
     @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int i) {
+        dest.writeValue(product);
+    }
+
+    @Override
     public int getType() {
         return ViewType.CART_TYPE;
     }
-
 
 }

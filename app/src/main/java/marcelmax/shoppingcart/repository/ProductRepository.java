@@ -19,6 +19,8 @@ import retrofit2.Response;
  */
 public class ProductRepository {
 
+    // todo repository for address and cart item as well?
+
     private static ProductRepository instance;
 
     public static ProductRepository getInstance() {

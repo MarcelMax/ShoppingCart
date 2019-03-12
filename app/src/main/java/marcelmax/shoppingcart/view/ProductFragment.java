@@ -22,7 +22,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import marcelmax.shoppingcart.R;
 import marcelmax.shoppingcart.adapter.MainAdapter;
-import marcelmax.shoppingcart.adapter.ProductAdapter;
 import marcelmax.shoppingcart.model.Product;
 import marcelmax.shoppingcart.viewmodels.ProductFragmentViewModel;
 

@@ -26,6 +26,7 @@ import marcelmax.shoppingcart.model.Address;
 import marcelmax.shoppingcart.model.CartItem;
 import marcelmax.shoppingcart.model.Product;
 import marcelmax.shoppingcart.model.ViewType;
+import marcelmax.shoppingcart.view.CartFragment;
 import marcelmax.shoppingcart.view.MainActivity;
 
 import static androidx.navigation.Navigation.findNavController;
@@ -33,16 +34,14 @@ import static androidx.navigation.Navigation.findNavController;
 public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     // todo https://medium.com/@zackcosborn/display-objects-of-different-types-in-a-recyclerview-8b7d8e3968aa
+    //todo comment
     private static final int PRODUCT_TYPE = 1;
     private static final int ADDRESS_TYPE = 2;
     private static final int CART_TYPE = 3;
 
-    private int viewType;
-
     private ArrayList<Product> mProducts;
     private ArrayList<Address> mAddresses;
-    private ArrayList<CartItem> mCart;
-
+    private ArrayList<CartItem> mCart; //todo change to the static list?
     private List<ViewType> mViewTypes;
 
     private Context mContext;
@@ -51,20 +50,16 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.mContext = mContext;
     }
 
-    public MainAdapter(Context mContext, ArrayList<Product> productList) {
-        this.mContext = mContext;
-        this.mProducts = productList;
-    }
 
-    public MainAdapter(Context mContext, ArrayList<Address> addressList, ArrayList<CartItem> cartList) {
-        this.mContext = mContext;
-        this.mAddresses = addressList;
-        this.mCart = cartList;
-    }
-
-
+    /**
+     * Accept any class that implements the ViewType interface, then replace
+     * the contents of mViewType List.
+     * This way you are able to use a List of Products, Addresses or CartItems as
+     * the parameter.
+     * @param viewTypeList
+     */
     public void setViewTypeList(List<? extends ViewType> viewTypeList) {
-        if (mViewTypes == null){
+        if (mViewTypes == null) {
             mViewTypes = new ArrayList<>();
         }
         mViewTypes.clear();
@@ -72,6 +67,12 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         notifyDataSetChanged();
     }
 
+    /**
+     * here you’ll create a new ViewHolder depending on the type sent from getItemViewType()
+     * @param viewGroup = parent layout
+     * @param i = the Viewtype
+     * @return
+     */
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -100,18 +101,24 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
+    /**
+     * Depending on the type that it returns, cast the generic ViewHolder
+     * parameter to the appropriate type and call its bindView() method.
+     * @param viewHolder
+     * @param i
+     */
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
         int itemViewType = getItemViewType(i);
 
         if (itemViewType == PRODUCT_TYPE) {
-            if (mProducts == null){
+            if (mProducts == null) {
                 mProducts = new ArrayList<>();
             }
 
-            for (ViewType product : mViewTypes){
-                mProducts.add((Product)product);
+            for (ViewType product : mViewTypes) {
+                mProducts.add((Product) product);
             }
 
             Product product = mProducts.get(i);
@@ -125,13 +132,14 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             Picasso.get()
                     .load(product.getProductImg())
                     .into(productViewHolder.productImage);
+
         } else if (itemViewType == ADDRESS_TYPE) {
-            if (mAddresses == null){
+            if (mAddresses == null) {
                 mAddresses = new ArrayList<>();
             }
 
-            for (ViewType address : mViewTypes){
-                mAddresses.add((Address)address);
+            for (ViewType address : mViewTypes) {
+                mAddresses.add((Address) address);
             }
 
             Address address = mAddresses.get(i);
@@ -148,12 +156,12 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     .into(addressViewHolder.addressImg);
 
         } else if (itemViewType == CART_TYPE) {
-            if (mCart == null){
+            if (mCart == null) {
                 mCart = new ArrayList<>();
             }
 
-            for (ViewType cartitem : mViewTypes){
-                mCart.add((CartItem)cartitem);
+            for (ViewType cartitem : mViewTypes) {
+                mCart.add((CartItem) cartitem);
             }
             CartItem cartItem = mCart.get(i);
             CartViewHolder cartViewHolder = (CartViewHolder) viewHolder;
@@ -167,22 +175,35 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
+    /**
+     * This will look at an item in mViewTypes List and determine
+     * if it’s a Product, Address, or CartItem then pass that result
+     * to onCreateViewHolder()
+     * @param position = the position in mViewType
+     * @return =  the result from the position in the list eg the viewtype
+     */
     @Override
     public int getItemViewType(int position) {
-    return mViewTypes.get(position).getType();
+        return mViewTypes.get(position).getType();
     }
 
     @Override
     public int getItemCount() {
-       if (mViewTypes == null){
-           return 0;
-       }
-       else {
-           return mViewTypes.size();
-       }
+        if (mViewTypes == null) {
+            return 0;
+        } else {
+            return mViewTypes.size();
+        }
     }
 
-
+    /**
+     *
+     * VIEWHOLDER SECTION BELOW
+     * Viewholders need to be an innerclass so
+     * that you can access them correctly.
+     * For each Object type you need one Viewholder
+     *
+     */
     public class ProductViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.img_product_image)
         ImageView productImage;
@@ -223,7 +244,7 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     }
 
-    public class AddressViewHolder extends RecyclerView.ViewHolder {
+    public class AddressViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.tv_address_firstname)
         TextView firstName;
         @BindView(R.id.tv_address_lastname)
@@ -239,11 +260,17 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @BindView(R.id.img_address)
         ImageView addressImg;
 
+        OnClickListener onClickListener;
+
         public AddressViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
+        @Override
+        public void onClick(View view) {
+            onClickListener.onItemClick(getAdapterPosition());
+        }
     }
 
     public class CartViewHolder extends RecyclerView.ViewHolder {
@@ -268,12 +295,14 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @OnClick(R.id.btn_cart_close)
         public void removeFromCart() {
 
+            CartFragment.cartArrayList.remove(getAdapterPosition());
             mCart.remove(getAdapterPosition());
+            mViewTypes.remove(getAdapterPosition());
             notifyDataSetChanged();
-
 
         }
 
+        //todo handle back navigation
         @OnClick(R.id.cv_cardview)
         public void changeFragment() {
 
@@ -281,10 +310,11 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             MainActivity mainActivity = (MainActivity) mContext;
             final NavController navController = findNavController(mainActivity, R.id.my_nav_host_fragment);
 
-            if (mCart != null) {
-                Log.v("********Clicked ", "*****POS. " + getAdapterPosition() + " PRODUCT" + mCart.get(getAdapterPosition()));
+            if (CartFragment.cartArrayList != null) {
+                Log.v("********Clicked ", "*****POS. " + getAdapterPosition() + " PRODUCT" + CartFragment.cartArrayList.get(getAdapterPosition()));
 
-               // bundle.putParcelable("pass_product", mCart.get(getAdapterPosition()));
+             //   bundle.putParcelable("pass_product", mCart.get(getAdapterPosition()));
+                bundle.putParcelable("pass_product", CartFragment.cartArrayList.get(getAdapterPosition()).getProduct());
                 navController.navigate(R.id.action_cartFragment_to_productDetailFragment, bundle);
 
             } else {

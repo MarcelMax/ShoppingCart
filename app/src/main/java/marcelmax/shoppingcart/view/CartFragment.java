@@ -23,12 +23,10 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import marcelmax.shoppingcart.R;
 import marcelmax.shoppingcart.adapter.MainAdapter;
+import marcelmax.shoppingcart.adapter.OnClickListener;
 import marcelmax.shoppingcart.model.CartItem;
 import marcelmax.shoppingcart.util.RecyclerItemClickListener;
-import marcelmax.shoppingcart.adapter.AddressAdapter;
-import marcelmax.shoppingcart.adapter.CartAdapter;
 import marcelmax.shoppingcart.model.Address;
-import marcelmax.shoppingcart.model.Product;
 
 public class CartFragment extends Fragment {
 
@@ -51,11 +49,11 @@ public class CartFragment extends Fragment {
 
     private MainAdapter mainAdapter;
     private Address address;
-    public static Address selectedAddress; // atm its not really necessary, but if you want to send an invoice this might change
-//todo static?
+    public static Address selectedAddress; //todo static?// atm its not really necessary, but if you want to send an invoice this might change
 
 //todo implement Interface on click
     //todo collapsingtoolbar for this screen
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cart_screen, container, false);
         unbinder = ButterKnife.bind(this, rootView);
@@ -69,6 +67,7 @@ public class CartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         addressRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -94,7 +93,7 @@ public class CartFragment extends Fragment {
      * @param recyclerView = rv which should be inflated
      * @param arrayList = list with either addresses or products in cart
      * @param emptyView = a view to be shown when lists are empty
-     * @param viewType = adapter for the appropriate rv
+     * @param viewType = decides what view should be inflated
      */
     public void adjustLayout(Button button, RecyclerView recyclerView, ArrayList arrayList, TextView emptyView, int viewType) {
         int viewRuleOne;
@@ -125,11 +124,19 @@ public class CartFragment extends Fragment {
 
     }
 
+    /**
+     * set the recyclerview
+     * @param recyclerView = the according rv for the view
+     * @param viewType = decides what view should be inflated
+     */
     private void prepareRecyclerViewMain(RecyclerView recyclerView, int viewType) {
-        mainAdapter = new MainAdapter(getContext());
+        if (mainAdapter == null){
+            mainAdapter = new MainAdapter(getContext());
+        }
+
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mainAdapter);
-        
+
         if (viewType == 1) {
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
             mainAdapter.setViewTypeList(addressArrayList);

@@ -86,8 +86,6 @@ public class Product implements Parcelable, ViewType {
     public Product() {
     }
 
-
-
     /**
      *
      * @param productId = id of the product
