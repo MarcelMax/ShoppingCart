@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
      * Shopping cart is a mock app to simulate shopping.
      * You can select a variety of products and add it to your cart
      * To fetch the product data I used Retrofit. The data is provided by mockaroo
-     * which lets you create a Json File and fill it with "random values"
+     * which lets you create a Json File and fill it with random values
      *
      * for navigation i used the new navigationcomponent.
      *

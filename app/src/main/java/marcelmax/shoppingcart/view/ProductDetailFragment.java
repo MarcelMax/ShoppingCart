@@ -22,7 +22,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import marcelmax.shoppingcart.R;
-import marcelmax.shoppingcart.adapter.MainAdapter;
 import marcelmax.shoppingcart.adapter.ViewPagerAdapter;
 import marcelmax.shoppingcart.model.CartItem;
 import marcelmax.shoppingcart.model.Product;
@@ -48,11 +47,13 @@ public class ProductDetailFragment extends Fragment {
 
     private ArrayList<String> imagesList;
     private Product product;
+    // public static CartItem cartItem;
     private CartItem cartItem;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.product_list_item_detail, container, false);
         unbinder = ButterKnife.bind(this, rootView);
+
 
         return rootView;
     }
@@ -64,6 +65,7 @@ public class ProductDetailFragment extends Fragment {
         fillWithContent();
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext(), imagesList);
         viewPager.setAdapter(viewPagerAdapter);
+
     }
 
     /**
@@ -83,6 +85,7 @@ public class ProductDetailFragment extends Fragment {
             numberPicker.setMax(product.getProductQuantity());
             addImagesToList(product);
             cartItem = new CartItem(product);
+            //  cartItem.setProduct(product);
         } else {
             Log.v("", "BUNDLE IS NULL");
         }
@@ -104,18 +107,18 @@ public class ProductDetailFragment extends Fragment {
 
     @OnClick(R.id.btn_add_to_cart)
     public void addToCart() {
-       // Log.v("", "max quantity before" + product.getCartQuantity());
+        // Log.v("", "max quantity before" + product.getCartQuantity());
         product.setProductQuantityChoosen(numberPicker.getValue());
 
         if (CartFragment.cartArrayList == null) {
             CartFragment.cartArrayList = new ArrayList<>();
         }
 
-        if (CartFragment.cartArrayList.contains(cartItem)) {
-            Log.v("", "IS ALREADY IN LIST" + cartItem);
-            CartFragment.cartArrayList.remove(this.cartItem);
+        for (CartItem item : CartFragment.cartArrayList) {
+            if (item.getProduct().equals(product)) {
+                CartFragment.cartArrayList.remove(item);
+            }
         }
-
 
         CartFragment.cartArrayList.add(cartItem);
 

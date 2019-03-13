@@ -23,6 +23,7 @@
     <string name="cart_no_products_in_cart">No Products in your cart.</string>
     <string name="cart_order_successfull">Order successful.</string>
     <string name="cart_added_product">Product added to cart</string>
+    <string name="cart_quantity_max">Can\t add Product to cart, reached max Stock</string>
 
 
     <string name="cart_item_list_quantity">Quantity: %1$d</string>

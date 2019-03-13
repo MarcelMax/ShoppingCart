@@ -27,6 +27,9 @@ public class CartItem implements Parcelable, ViewType {
 
     };
 
+    public CartItem() {
+    }
+
     public CartItem(Product product) {
         this.product = product;
     }

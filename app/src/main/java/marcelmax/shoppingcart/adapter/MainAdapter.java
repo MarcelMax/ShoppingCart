@@ -42,7 +42,8 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<Product> mProducts;
     private ArrayList<Address> mAddresses;
     private ArrayList<CartItem> mCart; //todo change to the static list?
-    private List<ViewType> mViewTypes;
+   // private List<ViewType> mViewTypes;
+    public static List<ViewType> mViewTypes;
 
     private Context mContext;
 
