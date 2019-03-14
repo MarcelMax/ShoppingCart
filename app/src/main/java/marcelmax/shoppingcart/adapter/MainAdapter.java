@@ -33,8 +33,7 @@ import static androidx.navigation.Navigation.findNavController;
 
 public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    // todo https://medium.com/@zackcosborn/display-objects-of-different-types-in-a-recyclerview-8b7d8e3968aa
-    //todo comment
+    //todo comment every class
     private static final int PRODUCT_TYPE = 1;
     private static final int ADDRESS_TYPE = 2;
     private static final int CART_TYPE = 3;
@@ -303,7 +302,6 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         }
 
-        //todo handle back navigation
         @OnClick(R.id.cv_cardview)
         public void changeFragment() {
 
@@ -314,7 +312,6 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             if (CartFragment.cartArrayList != null) {
                 Log.v("********Clicked ", "*****POS. " + getAdapterPosition() + " PRODUCT" + CartFragment.cartArrayList.get(getAdapterPosition()));
 
-             //   bundle.putParcelable("pass_product", mCart.get(getAdapterPosition()));
                 bundle.putParcelable("pass_product", CartFragment.cartArrayList.get(getAdapterPosition()).getProduct());
                 navController.navigate(R.id.action_cartFragment_to_productDetailFragment, bundle);
 

@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import marcelmax.shoppingcart.util.Constants;
@@ -33,6 +34,13 @@ public class ProductRepository {
     public LiveData<List<Product>> getProducts() {
 
         final MutableLiveData<List<Product>> data = new MutableLiveData<>();
+        final ArrayList<Product> products = new ArrayList<>();
+        /**
+         * Description for the problem mentioned in productfragment.
+         * By adding an Arraylist which holds all the products and adding
+         * it to the MutableLiveData it only returns a single result, instead of multiple
+         * results. (due to the way the api is constructed it would return multiple rows)
+         */
 
         // make the retrofit call
         getProductsResponse().enqueue(new Callback<List<ProductDBResponse>>() {
@@ -41,9 +49,12 @@ public class ProductRepository {
             public void onResponse(Call<List<ProductDBResponse>> call, Response<List<ProductDBResponse>> response) {
                 if (response != null && response.body() != null) {
                     for (ProductDBResponse productDBResponse : response.body()) {
-                        data.setValue(productDBResponse.getProduct());
+                        for (Product product: productDBResponse.getProduct()) {
+                          //
+                           products.add(product);
+                        }
                     }
-
+                    data.setValue(products);
                 }
 
             }
@@ -58,7 +69,8 @@ public class ProductRepository {
 
         });
 
-        Log.v("", "" + data);
+        Log.v("", "PRODUCTS " + products);
+        Log.v("", "DATA " + data.getValue());
 
         return data;
     }

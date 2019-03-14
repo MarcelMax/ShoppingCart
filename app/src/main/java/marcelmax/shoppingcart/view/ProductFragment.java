@@ -9,12 +9,10 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,7 +29,6 @@ public class ProductFragment extends Fragment {
     RecyclerView recyclerView;
 
     private Unbinder unbinder;
-    private ArrayList<Product> productArrayList;
     private MainAdapter mainAdapter;
     private ProductFragmentViewModel mProductFragmentViewModel;
 
@@ -53,23 +50,22 @@ public class ProductFragment extends Fragment {
 
     }
 
-    private void subscribeObservers(){
-        if (productArrayList == null){
-            productArrayList = new ArrayList<>();
-        }
 
-        mProductFragmentViewModel.getProducts().observe(this, new Observer<List<Product>>() {
+    /**
+     * The Problem was that, when you entered another Fragment and reentered
+     * the product list screen the on changed Method would trigger and add
+     * whatever the last respond was.
+     * To change that the Product Repository had to be altered. For more information see
+     * comment in repository
+     */
+    private void subscribeObservers() {
+        mProductFragmentViewModel.getProducts().observe(getViewLifecycleOwner(), new Observer<List<Product>>() {
             @Override
             public void onChanged(@Nullable List<Product> products) {
-                if (products != null){
-                    for (Product product : products){
-                        Log.v("***********", "\n PRODUCT: \n" + product + "\n");
-                        productArrayList.add(product);
-                        prepareRecyclerViewMain();
-                    }
-
+                if (products != null) {
+                    prepareRecyclerViewMain();
+                    mainAdapter.setViewTypeList(products);
                 }
-                Log.v("***********", "\n PRODUCTLIST: \n" + productArrayList + "\n");
             }
 
         });
@@ -82,7 +78,6 @@ public class ProductFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mainAdapter);
-        mainAdapter.setViewTypeList(productArrayList);
 
     }
 

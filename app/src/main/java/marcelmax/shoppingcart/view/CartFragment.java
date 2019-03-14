@@ -51,7 +51,6 @@ public class CartFragment extends Fragment {
     private Address address;
     public static Address selectedAddress; //todo static?// atm its not really necessary, but if you want to send an invoice this might change
 
-//todo implement Interface on click
     //todo collapsingtoolbar for this screen
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -221,7 +220,6 @@ public class CartFragment extends Fragment {
                 startActivity(Intent.createChooser(intent,""));
                 */
 
-                //todo because this is just a mock app, this is it for now
                 //todo things that could be added later: a order history screen or show a dialog if you really want to order
                 //todo send mail to the customer for confirmation
             }
