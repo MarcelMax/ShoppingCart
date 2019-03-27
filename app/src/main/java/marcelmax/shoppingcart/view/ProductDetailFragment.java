@@ -3,6 +3,7 @@ package marcelmax.shoppingcart.view;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -44,6 +45,8 @@ public class ProductDetailFragment extends Fragment {
     NumberPicker numberPicker;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
+    @BindView(R.id.tab_layout)
+    TabLayout tabLayout;
 
     private ArrayList<String> imagesList;
     private Product product;
@@ -65,6 +68,7 @@ public class ProductDetailFragment extends Fragment {
         fillWithContent();
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext(), imagesList);
         viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager,true);
 
     }
 
