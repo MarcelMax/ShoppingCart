@@ -205,6 +205,7 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
      *
      */
     public class ProductViewHolder extends RecyclerView.ViewHolder {
+
         @BindView(R.id.img_product_image)
         ImageView productImage;
         @BindView(R.id.rb_star_rating)
