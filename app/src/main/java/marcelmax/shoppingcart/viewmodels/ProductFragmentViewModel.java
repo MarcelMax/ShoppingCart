@@ -33,7 +33,8 @@ public class ProductFragmentViewModel extends ViewModel {
     public LiveData<List<Product>> getProducts() {
         if (this.mProducts == null){
             mProductRepository = ProductRepository.getInstance();
-            mProducts = mProductRepository.getProducts();
+            //mProducts = mProductRepository.getProducts();
+            mProducts = mProductRepository.getProductsFromRepo();
         }
 
         return mProducts;
